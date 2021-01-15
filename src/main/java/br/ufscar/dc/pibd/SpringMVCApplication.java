@@ -11,6 +11,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import br.ufscar.dc.dsw.classes.BookingSite;
+import br.ufscar.dc.dsw.classes.Hotel;
+import br.ufscar.dc.dsw.classes.SaleOff;
+import br.ufscar.dc.dsw.classes.User;
+import br.ufscar.dc.pibd.classes.Pessoa;
+
 
 @SpringBootApplication
 public class SpringMVCApplication {
@@ -24,8 +30,8 @@ public class SpringMVCApplication {
 	@Bean
 	public CommandLineRunner demo(BCryptPasswordEncoder encoder) {
 		return (args) -> {
-
-
+			
+			
 			
 			
 		};

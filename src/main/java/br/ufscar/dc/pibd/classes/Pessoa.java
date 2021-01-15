@@ -30,6 +30,7 @@ public class Pessoa {
 
 	@Column(name = "email")
 	String email;
+	
 	@Column(name = "password")
 	String password;
 
@@ -67,7 +68,7 @@ public class Pessoa {
 	@Column(name = "cidade")
 	String cidade;
 
-	@OneToMany
+	@OneToMany(mappedBy = "dono")
 	private List<Telefone> telefones;
 
 	@ManyToMany
@@ -78,7 +79,11 @@ public class Pessoa {
 	@Column(nullable = false, length = 20)
 	private String role;
 
+	@OneToMany(mappedBy = "contato")
+	private List<Agenda> agendaContato;
 	
+	@OneToMany(mappedBy = "contactante")
+	private List<Agenda> agendaContactante;
 	
 	public Pessoa() {
 	}

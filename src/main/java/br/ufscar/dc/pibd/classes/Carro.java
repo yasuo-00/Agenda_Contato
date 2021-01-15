@@ -28,6 +28,9 @@ public class Carro {
 	@Column(name="cor")
 	String cor;
 	
+	@Column(name="placa")
+	String placa;
+	
 	@Size(max=4)
 	@Column(columnDefinition = "INTEGER", name="ano", length=4)
 	int ano;
@@ -40,19 +43,16 @@ public class Carro {
 
 	
 	
-	
 	public Carro() {
 	}
 	
-
-	public Carro(String cor, @Size(max = 4) int ano, String modelo, List<Pessoa> pessoas) {
-		super();
+	public Carro( String cor, String placa, @Size(max = 4) int ano, String modelo, List<Pessoa> pessoas) {
 		this.cor = cor;
+		this.placa = placa;
 		this.ano = ano;
 		this.modelo = modelo;
 		this.pessoas = pessoas;
 	}
-
 
 
 	public Long getId() {
