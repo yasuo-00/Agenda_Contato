@@ -3,12 +3,15 @@ package br.ufscar.dc.pibd.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.ufscar.dc.pibd.classes.Agenda;
 import br.ufscar.dc.pibd.dao.IAgendaDAO;
 import br.ufscar.dc.pibd.service.spec.IAgendaService;
 
+@Service
+@Transactional(readOnly = false)
 public class AgendaService implements IAgendaService{
 	@Autowired
 	IAgendaDAO dao;

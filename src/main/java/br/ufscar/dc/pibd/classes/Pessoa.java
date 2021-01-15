@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -69,6 +71,7 @@ public class Pessoa {
 	String cidade;
 
 	@OneToMany(mappedBy = "dono")
+	@Cascade(CascadeType.ALL)
 	private List<Telefone> telefones;
 
 	@ManyToMany
@@ -80,9 +83,11 @@ public class Pessoa {
 	private String role;
 
 	@OneToMany(mappedBy = "contato")
+	@Cascade(CascadeType.ALL)
 	private List<Agenda> agendaContato;
 	
 	@OneToMany(mappedBy = "contactante")
+	@Cascade(CascadeType.ALL)
 	private List<Agenda> agendaContactante;
 	
 	public Pessoa() {
@@ -92,7 +97,7 @@ public class Pessoa {
 
 	public Pessoa(String email, String password, String homepage, String prenome, String nome,
 			LocalDate dataNascimento, String logradouro, int numero, String bairro, String cep, String complemento,
-			String uf, String cidade, List<Telefone> telefones, List<Carro> carros, String role) {
+			String uf, String cidade, String role) {
 		this.email = email;
 		this.password = password;
 		this.homepage = homepage;
@@ -106,8 +111,6 @@ public class Pessoa {
 		this.complemento = complemento;
 		this.uf = uf;
 		this.cidade = cidade;
-		this.telefones = telefones;
-		this.carros = carros;
 		this.role = role;
 	}
 

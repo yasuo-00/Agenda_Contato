@@ -28,11 +28,11 @@ public class Agenda {
 	private LocalDate dataInicioAmizade;
 	
 	@ManyToOne
-	@JoinColumn(name = "contato_id", insertable=false, updatable=false)
+	@JoinColumn(name = "contato_id")
 	private Pessoa contato;
 	
 	@ManyToOne
-	@JoinColumn(name = "contactante_id",  insertable=false, updatable=false)
+	@JoinColumn(name = "contactante_id")
 	private Pessoa contactante;
 
 	

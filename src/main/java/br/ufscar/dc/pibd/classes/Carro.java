@@ -8,7 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -38,21 +40,26 @@ public class Carro {
 	@Column(name="modelo")
 	String modelo;
 	
-	@ManyToMany(mappedBy = "carros")
-	private List<Pessoa> pessoas;
+	@ManyToOne
+	@JoinColumn(name = "pessoa_id")
+	private Pessoa pessoa;
 
 	
 	
 	public Carro() {
 	}
 	
-	public Carro( String cor, String placa, @Size(max = 4) int ano, String modelo, List<Pessoa> pessoas) {
+
+
+	public Carro(String cor, String placa, @Size(max = 4) int ano, String modelo, Pessoa pessoa) {
+		super();
 		this.cor = cor;
 		this.placa = placa;
 		this.ano = ano;
 		this.modelo = modelo;
-		this.pessoas = pessoas;
+		this.pessoa = pessoa;
 	}
+
 
 
 	public Long getId() {
@@ -65,13 +72,30 @@ public class Carro {
 	
 	
 
-	public List<Pessoa> getPessoas() {
-		return pessoas;
+
+	public String getPlaca() {
+		return placa;
 	}
 
-	public void setPessoas(List<Pessoa> pessoas) {
-		this.pessoas = pessoas;
+
+
+	public void setPlaca(String placa) {
+		this.placa = placa;
 	}
+
+
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+
+
 
 	public String getCor() {
 		return cor;
