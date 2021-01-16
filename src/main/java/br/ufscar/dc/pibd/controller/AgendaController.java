@@ -37,7 +37,7 @@ public class AgendaController {
 	@GetMapping("/listar")
 	public String list(ModelMap model) {
 		
-		model.addAttribute("contatos", agendaService.findAllByContactante(this.getPessoa()));
+		model.addAttribute("contatos", agendaService.findAllByContactante(this.getPessoa().getId()));
 //		
 		return "agenda/lista";
 	}

@@ -3,7 +3,6 @@ package br.ufscar.dc.pibd.service.spec;
 import java.util.List;
 
 import br.ufscar.dc.pibd.classes.Carro;
-import br.ufscar.dc.pibd.classes.Pessoa;
 
 public interface ICarroService {
 
@@ -13,7 +12,7 @@ public interface ICarroService {
 
 	void save(Carro carro);
 	
-	List<Carro> findAllByPessoa(Pessoa p);
+	List<Carro> findAllByPessoa(Long pessoaId);
 
 	void remove(Long id);
 }

@@ -34,4 +34,10 @@ public class TelefoneService implements ITelefoneService{
 	public List<Telefone> findAll() {
 		return dao.findAll();
 	}
+	
+	@Transactional(readOnly = true)
+	public List<Telefone> findAllByPessoa(Long id){
+		return dao.findAllByPessoa(id);
+	}
+	
 }

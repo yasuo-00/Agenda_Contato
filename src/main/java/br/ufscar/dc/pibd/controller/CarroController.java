@@ -1,6 +1,5 @@
 package br.ufscar.dc.pibd.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -22,21 +21,26 @@ public class CarroController {
 
 	@Autowired
 	private ICarroService carroService;
-	
+
 	private Pessoa getPessoa() {
-		UserAccount usuarioDetails = (UserAccount) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserAccount usuarioDetails = (UserAccount) SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal();
 		return usuarioDetails.getUser();
 	}
 
 	@GetMapping("/listar")
 	public String list(ModelMap model) {
-		model.addAttribute("carro",carroService.findAllByPessoa(this.getPessoa()));
+		if (this.getPessoa().getRole().compareTo("ROLE_ADMIN") == 0) {
+			model.addAttribute("carros", carroService.findAll());
+		} else if (this.getPessoa().getRole().compareTo("ROLE_USER") == 0) {
+			model.addAttribute("carros", carroService.findAllByPessoa(this.getPessoa().getId()));
+		}
 		return "carro/lista";
 	}
 
 	@PostMapping("/salvar")
 	public String save(Carro carro, BindingResult result, RedirectAttributes attr) {
-		
+
 		carro.setPessoa(this.getPessoa());
 		carroService.save(carro);
 		attr.addFlashAttribute("success", "Carro inserted successfully");
@@ -48,6 +52,5 @@ public class CarroController {
 		carro.setPessoa(this.getPessoa());
 		return "carro/cadastro";
 	}
-	
 
 }

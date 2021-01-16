@@ -2,10 +2,11 @@ package br.ufscar.dc.pibd.dao;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import br.ufscar.dc.pibd.classes.Agenda;
-import br.ufscar.dc.pibd.classes.Pessoa;
 
 @SuppressWarnings("unchecked")
 public interface IAgendaDAO extends CrudRepository<Agenda, Long> {
@@ -15,7 +16,8 @@ public interface IAgendaDAO extends CrudRepository<Agenda, Long> {
 
 	Agenda save(Agenda agenda);
 	
-	List<Agenda> findAllByContactante(Pessoa contactante);
+	@Query("SELECT DISTINCT a FROM Agenda a WHERE a.contactante.id = :contactanteId OR a.contato.id=:contactanteId")
+	public List<Agenda> findAllByContactante(@Param("contactanteId")Long contactanteId);
 
 	void deleteById(Long id);
 }

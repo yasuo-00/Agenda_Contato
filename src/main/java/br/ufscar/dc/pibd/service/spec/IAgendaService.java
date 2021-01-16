@@ -10,7 +10,7 @@ public interface IAgendaService {
 
 	List<Agenda> findAll();
 	
-	List<Agenda> findAllByContactante(Pessoa p);
+	List<Agenda> findAllByContactante(Long contactanteId);
 
 	void save(Agenda agenda);
 

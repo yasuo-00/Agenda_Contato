@@ -10,12 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
-@Table(name = "telefone")
+@Table(name = "telefone", uniqueConstraints={
+	    @UniqueConstraint(columnNames = {"prefixo","ddd","numero"})})
 @DynamicUpdate
 public class Telefone {
 		

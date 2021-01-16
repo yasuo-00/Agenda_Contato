@@ -36,8 +36,8 @@ public class CarroService implements ICarroService{
 	}
 
 	@Transactional(readOnly = true)
-	public List<Carro> findAllByPessoa(Pessoa p) {
-		return dao.findAllByPessoa(p);
+	public List<Carro> findAllByPessoa(Long pessoaId) {
+		return dao.findAllByPessoa(pessoaId);
 	}
 	
 }

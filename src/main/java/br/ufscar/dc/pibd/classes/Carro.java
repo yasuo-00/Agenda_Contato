@@ -13,6 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Cascade;
@@ -20,7 +21,8 @@ import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
-@Table(name = "carro")
+@Table(name = "carro", uniqueConstraints={
+	    @UniqueConstraint(columnNames = {"placa"})})
 @DynamicUpdate
 public class Carro {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)

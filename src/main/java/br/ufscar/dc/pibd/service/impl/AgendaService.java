@@ -36,8 +36,8 @@ public class AgendaService implements IAgendaService{
 	}
 	
 	@Transactional(readOnly = true)
-	public List<Agenda> findAllByContactante(Pessoa p) {
-		return dao.findAllByContactante(p);
+	public List<Agenda> findAllByContactante(Long contactanteId) {
+		return dao.findAllByContactante(contactanteId);
 	}
 	
 }

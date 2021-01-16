@@ -12,4 +12,6 @@ public interface ITelefoneService {
 	void save(Telefone telefone);
 
 	void remove(Long id);
+	
+	List<Telefone> findAllByPessoa(Long id);
 }

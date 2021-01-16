@@ -11,12 +11,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "agenda")
+@Table(name = "agenda", uniqueConstraints={
+	    @UniqueConstraint(columnNames = {"data_inicio_amizade","contato_id", "contactante_id"})})
 @DynamicUpdate
 public class Agenda {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
