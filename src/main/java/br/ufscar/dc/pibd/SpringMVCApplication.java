@@ -43,11 +43,11 @@ public class SpringMVCApplication {
 //			Agenda a1 = new Agenda(dataInicioAmizade, contato, contactante)
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 			
-			Pessoa ana = new Pessoa("ana@gmail.com", "ana123", "site2", "lúcia", "ana", LocalDate.parse("01/02/1998", formatter), "Rua da Luz", 121, "Brasil", "112345", "Casa", "SP", "São Carlos",  "ROLE_USER");
+			Pessoa ana = new Pessoa("ana@gmail.com", encoder.encode("ana123"), "site2", "lúcia", "ana", LocalDate.parse("01/02/1998", formatter), "Rua da Luz", 121, "Brasil", "112345", "Casa", "SP", "São Carlos",  "ROLE_USER");
 
-			Pessoa lucas = new Pessoa("lucas@gmail.com", "lucas123", "site3", "almeida", "hugo", LocalDate.parse("01/03/1998", formatter), "Rua Sé", 131, "Brasil", "122456", "Casa", "São Paulo", "Campinas", "ROLE_USER");
+			Pessoa lucas = new Pessoa("lucas@gmail.com", encoder.encode("lucas123"), "site3", "almeida", "hugo", LocalDate.parse("01/03/1998", formatter), "Rua Sé", 131, "Brasil", "122456", "Casa", "São Paulo", "Campinas", "ROLE_USER");
 
-			Pessoa hugo = new Pessoa("hugo@gmail.com", "hugo123", "site1", "santos", "hugo", LocalDate.parse("01/01/1998", formatter), "Rua Vieira", 111, "Brasil", "123456", "Casa", "São Paulo", "São Paulo", "ROLE_USER");
+			Pessoa hugo = new Pessoa("hugo@gmail.com", encoder.encode("hugo123"), "site1", "santos", "hugo", LocalDate.parse("01/01/1998", formatter), "Rua Vieira", 111, "Brasil", "123456", "Casa", "São Paulo", "São Paulo", "ROLE_USER");
 			
 			pDao.save(ana);
 			pDao.save(lucas);

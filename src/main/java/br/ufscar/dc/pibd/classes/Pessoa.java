@@ -43,7 +43,7 @@ public class Pessoa {
 	String prenome;
 
 	@Column(name = "nome")
-	String nome;
+	String sobrenome;
 
 	@Column(name = "data_nascimento")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -95,14 +95,14 @@ public class Pessoa {
 	
 	
 
-	public Pessoa(String email, String password, String homepage, String prenome, String nome,
+	public Pessoa(String email, String password, String homepage, String prenome, String sobrenome,
 			LocalDate dataNascimento, String logradouro, int numero, String bairro, String cep, String complemento,
 			String uf, String cidade, String role) {
 		this.email = email;
 		this.password = password;
 		this.homepage = homepage;
 		this.prenome = prenome;
-		this.nome = nome;
+		this.sobrenome = sobrenome;
 		this.dataNascimento = dataNascimento;
 		this.logradouro = logradouro;
 		this.numero = numero;
@@ -148,12 +148,12 @@ public class Pessoa {
 		this.prenome = prenome;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getSobrenome() {
+		return sobrenome;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
 	}
 
 	public LocalDate getDataNascimento() {
@@ -256,7 +256,7 @@ public class Pessoa {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(bairro, cep, cidade, complemento, dataNascimento, email, homepage, id, logradouro, nome,
+		return Objects.hash(bairro, cep, cidade, complemento, dataNascimento, email, homepage, id, logradouro, sobrenome,
 				numero, prenome, telefones, uf);
 	}
 
@@ -273,7 +273,7 @@ public class Pessoa {
 				&& Objects.equals(cidade, other.cidade) && Objects.equals(complemento, other.complemento)
 				&& Objects.equals(dataNascimento, other.dataNascimento) && Objects.equals(email, other.email)
 				&& Objects.equals(homepage, other.homepage) && Objects.equals(id, other.id)
-				&& Objects.equals(logradouro, other.logradouro) && Objects.equals(nome, other.nome)
+				&& Objects.equals(logradouro, other.logradouro) && Objects.equals(sobrenome, other.sobrenome)
 				&& numero == other.numero && Objects.equals(prenome, other.prenome)
 				&& Objects.equals(telefones, other.telefones) && Objects.equals(uf, other.uf);
 	}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<section class="layout-content" layout:fragment="corpo">
+
+		<nav class="navbar navbar-expand-md bg-light">
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<i class="oi oi-caret-right"></i>
+						<span th:text="#{link.agenda}"></span>
+					</li>
+				</ul>
+				<a class="btn btn-primary btn-md" th:href="@{/agenda/cadastrar}" role="button"> 
+					<span class="oi oi-plus" title="Cadastrar" aria-hidden="true"></span> 
+					<span th:text="#{pessoa.adicionarContato}"></span>
+				</a>
+			</div>
+		</nav>
+
+		<div class="container" id="listagem">
+
+			<div th:replace="fragments/alert"></div>
+
+			<div class="table-responsive">
+				<table class="table table-striped table-hover table-sm">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th th:text="#{pessoa.nome}"></th>
+							<th th:text="#{pessoa.nascimento}"></th>
+							<th th:text="#{pessoa.email}"></th>
+							<th th:text="#{pessoa.homepage}"></th>
+							<th th:text="#{pessoa.telefones}"></th>
+							<th th:text="#{pessoa.endereco}"></th>
+							<th th:text="#{pessoa.cidade}"></th>
+							<th th:text="#{pessoa.uf}"></th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="agenda : ${contatos}">
+							<td th:text="${agenda.contato.id}"></td>
+							<td th:text="${agenda.contato.prenome + ' ' + agenda.contato.sobrenome}"></td>
+							<td><input type="date" th:value="${agenda.contato.dataNascimento}" disabled></td>
+							<td th:text="${agenda.contato.email}"></td>
+							<td><a th:href="${agenda.contato.homepage}" th:text="${agenda.contato.homepage}" target="_blank"></a></td>
+							<td>
+								<select name="telefones" id="telefones">
+		     						<option th:each="telefone : ${agenda.contato.telefones}" th:id="${telefone.id}" th:value="${telefone.id}" th:text="${telefone.prefixo + ' ' + telefone.ddd + ' ' + telefone.numero)}"></option>
+		    					</select>
+		    				</td>
+		    				<td th:text="${agenda.contato.logradouro + ', ' + agenda.contato.numero + ', ' + agenda.contato.bairro + ', ' + agenda.contato.cep}"></td>
+							<td th:text="${agenda.contato.cidade}"></td>
+							<td th:text="${agenda.contato.uf}"></td>
+							
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div th:replace="fragments/modal :: modal"></div>
+	</section>
+</body>
+</html>

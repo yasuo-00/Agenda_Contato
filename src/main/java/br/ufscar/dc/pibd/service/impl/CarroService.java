@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.ufscar.dc.pibd.classes.Carro;
+import br.ufscar.dc.pibd.classes.Pessoa;
 import br.ufscar.dc.pibd.dao.ICarroDAO;
 import br.ufscar.dc.pibd.service.spec.ICarroService;
 
@@ -32,6 +33,11 @@ public class CarroService implements ICarroService{
 	@Transactional(readOnly = true)
 	public List<Carro> findAll() {
 		return dao.findAll();
+	}
+
+	@Transactional(readOnly = true)
+	public List<Carro> findAllByPessoa(Pessoa p) {
+		return dao.findAllByPessoa(p);
 	}
 	
 }

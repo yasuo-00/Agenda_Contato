@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.ufscar.dc.pibd.classes.Agenda;
+import br.ufscar.dc.pibd.classes.Pessoa;
 import br.ufscar.dc.pibd.dao.IAgendaDAO;
 import br.ufscar.dc.pibd.service.spec.IAgendaService;
 
@@ -32,6 +33,11 @@ public class AgendaService implements IAgendaService{
 	@Transactional(readOnly = true)
 	public List<Agenda> findAll() {
 		return dao.findAll();
+	}
+	
+	@Transactional(readOnly = true)
+	public List<Agenda> findAllByContactante(Pessoa p) {
+		return dao.findAllByContactante(p);
 	}
 	
 }

@@ -16,9 +16,8 @@ public class MvcConfig implements WebMvcConfigurer {
 
 	//arrumar as rotas
 	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/").setViewName("redirect:/home");
 		registry.addViewController("/home").setViewName("home");
-		registry.addViewController("/").setViewName("home");
-		registry.addViewController("/admin").setViewName("admin/index");
 		registry.addViewController("/login").setViewName("login");
 	}
 

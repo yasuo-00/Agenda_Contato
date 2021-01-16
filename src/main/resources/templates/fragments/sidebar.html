@@ -15,56 +15,54 @@
 					class="oi oi-home"></i> <span th:text="#{home}"></span>
 			</a></li>
 		</ul>
-		<ul class="nav nav-pills">
-			<li class="nav-item"><a class="nav-link " th:href="@{/login}">
-					<i class="oi oi-home"></i> <span th:text="#{login}"></span>
-			</a></li>
-		</ul>
 		<div>
 			<ul class="nav nav-pills">
-				<div sec:authorize="hasRole('ROLE_ADMIN')">
-					<li class="nav-item"><span class="nav-link active"
-						th:text="#{admin_menu}"></span></li> </a>
-					</li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/admin/menu}"> <i class="oi oi-spreadsheet"></i> <span
-							th:text="#{menu}"></span>
-					</a></li>
-				</div>
-				<div sec:authorize="isAuthenticated()">
-					<li class="nav-item"><span class="nav-link active"
-						th:text="#{saleoff_list}"></span></li> </a>
-					</li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/saleOffs/list}"> <i class="oi oi-spreadsheet"></i>
-							<span th:text="#{list}"></span>
-					</a></li>
-				</div>
 				<li class="nav-item"><span class="nav-link active"
-					th:text="#{show_hotels_list}"></span></li>
-				</a>
-				</li>
+					th:text="#{sidebar.pessoas}"></span></li>
 				<li class="nav-item"><a class="nav-link"
-					th:href="@{/hotels/list}"> <i class="oi oi-spreadsheet"></i> <span
-						th:text="#{list}"></span>
+					th:href="@{/pessoa/cadastrar}"> <i class="oi oi-plus"></i> <span
+						th:text="#{sidebar.link.cadastrar}"></span>
 				</a></li>
-
-				<li class="nav-item"><span class="nav-link active"
-					th:text="#{filter}"></span></li>
-				</a>
-				</li>
-				<li class="nav-item">
-					<form th:action="@{/hotels/list}">
-						<input type="text" id="city" name="city"> <input
-							type="submit" th:value="#{filter}">
-					</form> </a>
-
-				</li>
-
-
 			</ul>
+			<div sec:authorize="hasRole('ROLE_USER')">
+				<ul class="nav nav-pills">
+					<li class="nav-item"><span class="nav-link active"
+						th:text="#{sidebar.carros}"></span></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/carro/cadastrar}"> <i class="oi oi-plus"></i> <span
+							th:text="#{sidebar.link.cadastrar}"></span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/carro/listar}"> <i class="oi oi-spreadsheet"></i>
+							<span th:text="#{sidebar.link.listar}"></span>
+					</a></li>
+				</ul>
+				<ul class="nav nav-pills">
+					<li class="nav-item"><span class="nav-link active"
+						th:text="#{sidebar.telefones}"></span></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/telefone/cadastrar}"> <i class="oi oi-plus"></i> <span
+							th:text="#{sidebar.link.cadastrar}"></span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/telefone/listar}"> <i class="oi oi-spreadsheet"></i>
+							<span th:text="#{sidebar.link.listar}"></span>
+					</a></li>
+				</ul>
+				<ul class="nav nav-pills">
+					<li class="nav-item"><span class="nav-link active"
+						th:text="#{sidebar.agenda}"></span></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/agenda/cadastrar}"> <i class="oi oi-plus"></i> <span
+							th:text="#{cadastrar.contato}"></span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/agenda/listar}"> <i class="oi oi-spreadsheet"></i>
+							<span th:text="#{listar.contato}"></span>
+					</a></li>
+				</ul>
+			</div>
 		</div>
-
 	</nav>
 </body>
 </html>

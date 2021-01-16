@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<section class="layout-content" layout:fragment="corpo">
+
+		<nav class="navbar navbar-expand-md bg-light">
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><i class="oi oi-caret-right"></i>
+						<span th:text="#{pessoa.cadastrar}"></span></li>
+				</ul>
+				<a class="btn btn-primary btn-md" th:href="@{/pessoa/listar}"
+					role="button"> <span class="oi oi-spreadsheet" title="Listar"
+					aria-hidden="true"></span> <span th:text="#{pessoa.listar}"></span>
+				</a>
+			</div>
+		</nav>
+
+		<div class="container" id="cadastro">
+
+			<div th:replace="fragments/alert"></div>
+
+			<form
+				th:action="@{/pessoa/salvarTelefone}"
+				th:object="${telefone}" method="POST">
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label th:text="#{telefone.prefixo}" for="prefixo"></label> 
+						<input type="text" class="form-control" id="prenome" autofocus="autofocus"
+							th:field="*{prefixo}" th:placeholder="#{telefone.prefixo}"
+							th:classappend="${#fields.hasErrors('prefixo')} ? is-invalid" />
+
+						<div class="invalid-feedback">
+							<span th:errors="*{prefixo}"></span>
+						</div>
+					</div>
+					<div class="form-group col-md-6">
+						<label th:text="#{telefone.ddd}" for="ddd"></label> 
+						<input type="text" class="form-control" id="ddd" autofocus="autofocus"
+							th:field="*{ddd}" th:placeholder="#{telefone.ddd}"
+							th:classappend="${#fields.hasErrors('ddd')} ? is-invalid" />
+
+						<div class="invalid-feedback">
+							<span th:errors="*{ddd}"></span>
+						</div>
+					</div>
+					<div class="form-group col-md-6">
+						<label th:text="#{telefone.numero}" for="numero"></label> 
+						<input type="numb" class="form-control" id="numero" autofocus="autofocus"
+							th:field="*{numero}" th:placeholder="#{telefone.numero}"
+							th:classappend="${#fields.hasErrors('numero')} ? is-invalid" />
+
+						<div class="invalid-feedback">
+							<span th:errors="*{numero}"></span>
+						</div>
+					</div>
+					
+				</div>
+				<input type="hidden" id="id" th:object="${pessoa}" th:field="*{id}" />
+				<button type="submit" th:text="#{button_save}"
+					class="btn btn-primary btn-sm"></button>
+			</form>
+		</div>
+	</section>
+</body>
+</html>

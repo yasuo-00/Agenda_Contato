@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<section class="layout-content" layout:fragment="corpo">
+
+		<nav class="navbar navbar-expand-md bg-light">
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><i class="oi oi-caret-right"></i>
+						<span th:text="#{carro.cadastrar}"></span></li>
+				</ul>
+				<a class="btn btn-primary btn-md" th:href="@{/pessoa/listar}"
+					role="button"> <span class="oi oi-spreadsheet" title="Listar"
+					aria-hidden="true"></span> <span th:text="#{carro.lista}"></span>
+				</a>
+			</div>
+		</nav>
+
+		<div class="container" id="cadastro">
+
+			<div th:replace="fragments/alert"></div>
+
+			<form
+				th:action="@{/carro/salvar}"
+				th:object="${carro}" method="POST">
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label th:text="#{carro.modelo}" for="modelo"></label> 
+						<input type="text" class="form-control" id="modelo" autofocus="autofocus"
+							th:field="*{modelo}" th:placeholder="#{carro.modelo}"
+							th:classappend="${#fields.hasErrors('modelo')} ? is-invalid" />
+
+						<div class="invalid-feedback">
+							<span th:errors="*{modelo}"></span>
+						</div>
+					</div>
+					<div class="form-group col-md-6">
+						<label th:text="#{carro.ano}" for="ano"></label> 
+						<input type="number" class="form-control" id="ano" autofocus="autofocus"
+							th:field="*{ano}" th:placeholder="#{carro.ano}"
+							th:classappend="${#fields.hasErrors('ano')} ? is-invalid" />
+
+						<div class="invalid-feedback">
+							<span th:errors="*{ano}"></span>
+						</div>
+					</div>
+					
+					<div class="form-group col-md-6">
+						<label th:text="#{carro.cor}" for="cor"></label> 
+						<input type="text" class="form-control" id="cor"
+							th:field="*{cor}" th:placeholder="#{carro.cor}"
+							th:classappend="${#fields.hasErrors('cor')} ? is-invalid" />
+
+						<div class="invalid-feedback">
+							<span th:errors="*{cor}"></span>
+						</div>
+					</div>
+					
+					<div class="form-group col-md-6">
+						<label th:text="#{carro.placa}" for="placa"></label> 
+						<input type="text" class="form-control" id="placa" autofocus="autofocus"
+							th:field="*{placa}" th:placeholder="#{carro.placa}"
+							th:classappend="${#fields.hasErrors('placa')} ? is-invalid" />
+
+						<div class="invalid-feedback">
+							<span th:errors="*{placa}"></span>
+						</div>
+					</div>
+		
+				<button type="submit" th:text="#{button_save}"
+					class="btn btn-primary btn-sm"></button>
+			</form>
+		</div>
+	</section>
+</body>
+</html>

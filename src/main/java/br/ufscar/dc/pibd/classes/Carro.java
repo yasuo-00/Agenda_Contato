@@ -33,7 +33,6 @@ public class Carro {
 	@Column(name="placa")
 	String placa;
 	
-	@Size(max=4)
 	@Column(columnDefinition = "INTEGER", name="ano", length=4)
 	int ano;
 	

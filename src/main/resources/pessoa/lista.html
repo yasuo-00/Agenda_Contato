@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<section class="layout-content" layout:fragment="corpo">
+
+		<nav class="navbar navbar-expand-md bg-light">
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<i class="oi oi-caret-right"></i>
+						<span th:text="#{pessoa.listar}"></span>
+					</li>
+				</ul>
+				<a class="btn btn-primary btn-md" th:href="@{/pessoa/cadastrar}" role="button"> 
+					<span class="oi oi-plus" title="Cadastrar" aria-hidden="true"></span> 
+					<span th:text="#{pessoa.cadastrar}"></span>
+				</a>
+			</div>
+		</nav>
+
+		<div class="container" id="listagem">
+
+			<div th:replace="fragments/alert"></div>
+
+			<div class="table-responsive">
+				<table class="table table-striped table-hover table-sm">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th th:text="#{pessoa.nome}"></th>
+							<th th:text="#{pessoa.nascimento}"></th>
+							<th th:text="#{pessoa.email}"></th>
+							<th th:text="#{pessoa.homepage}"></th>
+							<th th:text="#{pessoa.telefones}"></th>
+							<th th:text="#{pessoa.endereco}"></th>
+							<th th:text="#{pessoa.cidade}"></th>
+							<th th:text="#{pessoa.uf}"></th>
+							<th>Ações</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="pessoa : ${pessoas}">
+							<td th:text="${pessoa.id}"></td>
+							<td th:text="${pessoa.prenome + ' ' + pessoa.sobrenome}"></td>
+							<td><input type="date" th:value="${pessoa.dataNascimento}" disabled></td>
+							<td th:text="${pessoa.email}"></td>
+							<td><a th:href="${pessoa.homepage}" th:text="${pessoa.homepage}" target="_blank"></a></td>
+							<td>
+								<select name="telefones" id="telefones">
+		     						<option th:each="telefone : ${pessoa.telefones}" th:id="${telefone.id}" th:value="${telefone.id}" th:text="${telefone.prefixo + ' ' + telefone.ddd + ' ' + telefone.numero)}"></option>
+		    					</select>
+		    				</td>
+		    				<td th:text="${pessoa.logradouro + ', ' + pessoa.numero + ', ' + pessoa.bairro + ', ' + pessoa.cep}"></td>
+							<td th:text="${pessoa.cidade}"></td>
+							<td th:text="${pessoa.uf}"></td>
+							<td colspan="2">
+								<a class="btn btn-info btn-sm" th:href="@{/pessoa/cadastrarTelefone/{id} (id=${pessoa.id}) }"
+									role="button"> 
+									<span class="oi oi-phone" th:title="#{link.telefone}" aria-hidden="true"> </span>
+								</a>
+								<a class="btn btn-info btn-sm" th:href="@{/pessoa/agenda/{id} (id=${pessoa.id}) }"
+									role="button"> 
+									<span class="oi oi-people" th:title="#{link.agenda}" aria-hidden="true"> </span>
+								</a>
+							</td>
+							
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div th:replace="fragments/modal :: modal"></div>
+	</section>
+</body>
+</html>

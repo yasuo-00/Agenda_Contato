@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<section class="layout-content" layout:fragment="corpo">
+
+		<nav class="navbar navbar-expand-md bg-light">
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><i class="oi oi-caret-right"></i>
+						<span th:text="#{contato.cadastrar}"></span></li>
+				</ul>
+				<a class="btn btn-primary btn-md" th:href="@{/pessoa/listar}"
+					role="button"> <span class="oi oi-spreadsheet" title="Listar"
+					aria-hidden="true"></span> <span th:text="#{contato.listar}"></span>
+				</a>
+			</div>
+		</nav>
+
+		<div class="container" id="cadastro">
+
+			<div th:replace="fragments/alert"></div>
+
+			<form
+				th:action="@{/agenda/salvar}"
+				th:object="${contato}" method="POST">
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label th:text="#{pessoa.nome}" for="contato"></label> 
+						<select class="form-control" name="contato" id="contato">
+								<option th:each="pessoa : ${pessoas}" th:value="${pessoa.id}" th:text="${pessoa.prenome + ' ' + pessoa.sobrenome}"></option>
+						</select>
+					</div>
+				</div>
+					
+				<button type="submit" th:text="#{button_save}"
+					class="btn btn-primary btn-sm"></button>
+			</form>
+		</div>
+	</section>
+</body>
+</html>
