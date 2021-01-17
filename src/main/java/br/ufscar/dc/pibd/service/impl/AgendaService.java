@@ -3,6 +3,7 @@ package br.ufscar.dc.pibd.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,10 +14,10 @@ import br.ufscar.dc.pibd.service.spec.IAgendaService;
 
 @Service
 @Transactional(readOnly = false)
-public class AgendaService implements IAgendaService{
+public class AgendaService implements IAgendaService {
 	@Autowired
 	IAgendaDAO dao;
-	
+
 	public void save(Agenda agenda) {
 		dao.save(agenda);
 	}
@@ -34,10 +35,14 @@ public class AgendaService implements IAgendaService{
 	public List<Agenda> findAll() {
 		return dao.findAll();
 	}
-	
+
 	@Transactional(readOnly = true)
 	public List<Agenda> findAllByContactante(Long contactanteId) {
 		return dao.findAllByContactante(contactanteId);
 	}
-	
+
+	@Transactional(readOnly = true)
+	public List<Pessoa> findAllNotInAgenda(Long pessoaId) {
+		return dao.findAllNotInAgenda(pessoaId);
+	}
 }

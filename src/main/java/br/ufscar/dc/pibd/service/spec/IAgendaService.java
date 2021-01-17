@@ -9,12 +9,13 @@ public interface IAgendaService {
 	Agenda findById(Long id);
 
 	List<Agenda> findAll();
-	
+
 	List<Agenda> findAllByContactante(Long contactanteId);
+
+	List<Pessoa> findAllNotInAgenda(Long pessoaId);
 
 	void save(Agenda agenda);
 
 	void remove(Long id);
-	
 
 }

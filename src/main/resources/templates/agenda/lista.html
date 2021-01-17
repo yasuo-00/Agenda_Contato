@@ -9,14 +9,13 @@
 		<nav class="navbar navbar-expand-md bg-light">
 			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active">
-						<i class="oi oi-caret-right"></i>
-						<span th:text="#{link.agenda}"></span>
-					</li>
+					<li class="nav-item active"><i class="oi oi-caret-right"></i>
+						<span th:text="#{link.agenda}"></span></li>
 				</ul>
-				<a class="btn btn-primary btn-md" th:href="@{/agenda/cadastrar}" role="button"> 
-					<span class="oi oi-plus" title="Cadastrar" aria-hidden="true"></span> 
-					<span th:text="#{pessoa.adicionarContato}"></span>
+				<a class="btn btn-primary btn-md" th:href="@{/agenda/cadastrar}"
+					role="button"> <span class="oi oi-plus" title="Cadastrar"
+					aria-hidden="true"></span> <span
+					th:text="#{link.contato}"></span>
 				</a>
 			</div>
 		</nav>
@@ -38,25 +37,51 @@
 							<th th:text="#{pessoa.endereco}"></th>
 							<th th:text="#{pessoa.cidade}"></th>
 							<th th:text="#{pessoa.uf}"></th>
-							
+
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="agenda : ${contatos}">
+							<div
+								th:if="${agenda.contato.id==#authentication.getPrincipal().getUser().getId()}">
+								<td th:text="${agenda.contactante.id}"></td>
+								<td
+									th:text="${agenda.contactante.prenome + ' ' + agenda.contactante.sobrenome}"></td>
+								<td><input type="date"
+									th:value="${agenda.contactante.dataNascimento}" disabled></td>
+								<td th:text="${agenda.contactante.email}"></td>
+								<td><a th:href="${agenda.contactante.homepage}"
+									th:text="${agenda.contactante.homepage}" target="_blank"></a></td>
+								<td><select name="telefones" id="telefones">
+										<option th:each="telefone : ${agenda.contactante.telefones}"
+											th:id="${telefone.id}" th:value="${telefone.id}"
+											th:text="${telefone.prefixo + ' ' + telefone.ddd + ' ' + telefone.numero}"></option>
+								</select></td>
+								<td
+									th:text="${agenda.contactante.logradouro + ', ' + agenda.contactante.numero + ', ' + agenda.contactante.bairro + ', ' + agenda.contactante.cep}"></td>
+								<td th:text="${agenda.contactante.cidade}"></td>
+								<td th:text="${agenda.contactante.uf}"></td>
+							</div>
+							<div
+								th:unless="${agenda.contato.id==#authentication.getPrincipal().getUser().getId()}">
 							<td th:text="${agenda.contato.id}"></td>
-							<td th:text="${agenda.contato.prenome + ' ' + agenda.contato.sobrenome}"></td>
-							<td><input type="date" th:value="${agenda.contato.dataNascimento}" disabled></td>
+							<td
+								th:text="${agenda.contato.prenome + ' ' + agenda.contato.sobrenome}"></td>
+							<td><input type="date"
+								th:value="${agenda.contato.dataNascimento}" disabled></td>
 							<td th:text="${agenda.contato.email}"></td>
-							<td><a th:href="${agenda.contato.homepage}" th:text="${agenda.contato.homepage}" target="_blank"></a></td>
-							<td>
-								<select name="telefones" id="telefones">
-		     						<option th:each="telefone : ${agenda.contato.telefones}" th:id="${telefone.id}" th:value="${telefone.id}" th:text="${telefone.prefixo + ' ' + telefone.ddd + ' ' + telefone.numero)}"></option>
-		    					</select>
-		    				</td>
-		    				<td th:text="${agenda.contato.logradouro + ', ' + agenda.contato.numero + ', ' + agenda.contato.bairro + ', ' + agenda.contato.cep}"></td>
+							<td><a th:href="${agenda.contato.homepage}"
+								th:text="${agenda.contato.homepage}" target="_blank"></a></td>
+							<td><select name="telefones" id="telefones">
+									<option th:each="telefone : ${agenda.contato.telefones}"
+										th:id="${telefone.id}" th:value="${telefone.id}"
+										th:text="${telefone.prefixo + ' ' + telefone.ddd + ' ' + telefone.numero}"></option>
+							</select></td>
+							<td
+								th:text="${agenda.contato.logradouro + ', ' + agenda.contato.numero + ', ' + agenda.contato.bairro + ', ' + agenda.contato.cep}"></td>
 							<td th:text="${agenda.contato.cidade}"></td>
 							<td th:text="${agenda.contato.uf}"></td>
-							
+							</div>
 						</tr>
 					</tbody>
 				</table>

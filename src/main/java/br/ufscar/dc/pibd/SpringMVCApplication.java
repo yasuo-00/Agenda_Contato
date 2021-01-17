@@ -57,7 +57,7 @@ public class SpringMVCApplication {
 
 			Telefone t2 = new Telefone("55", "16", "112345678", lucas);
 
-			Telefone t3 = new Telefone("55", "16", "122345678", hugo);
+			Telefone t3 = new Telefone("55", "16", "122345634", hugo);
 
 			tDao.save(t1);
 			tDao.save(t2);
@@ -67,11 +67,11 @@ public class SpringMVCApplication {
 
 			Agenda a2 = new Agenda(LocalDate.parse("03/01/2020", formatter), ana, hugo);
 
-			Agenda a3 = new Agenda(LocalDate.parse("03/01/2020", formatter), lucas, hugo);
+			//Agenda a3 = new Agenda(LocalDate.parse("03/01/2020", formatter), lucas, hugo);
 			
 			aDao.save(a1);
 			aDao.save(a2);
-			aDao.save(a3);
+			//aDao.save(a3);
 			
 			Carro c1 = new Carro("azul", "abc", 2020, "sedan", ana);
 

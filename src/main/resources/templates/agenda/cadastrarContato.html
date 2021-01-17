@@ -31,7 +31,7 @@
 					<div class="form-group col-md-6">
 						<label th:text="#{pessoa.nome}" for="contato"></label> 
 						<select class="form-control" name="contato" id="contato">
-								<option th:each="pessoa : ${pessoas}" th:value="${pessoa.id}" th:text="${pessoa.prenome + ' ' + pessoa.sobrenome}"></option>
+								<option th:each="pessoa : ${pessoas}" th:if="${pessoa.id != #authentication.getPrincipal().getUser().getId()}" th:value="${pessoa.id}" th:text="${pessoa.prenome + ' ' + pessoa.sobrenome}"></option>
 						</select>
 					</div>
 				</div>
